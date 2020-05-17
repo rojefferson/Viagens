@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
 using api.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.Controllers
 {
-
+    
     [ApiController]
     [Route("[Controller]")]
     public class ViagemController : Controller
@@ -24,8 +25,9 @@ namespace api.Controllers
            return  "testasdasdasdasdae";
        } 
 
+
         [HttpGet("Produtos")]
-        public List<Produto> produtos(){
+        public ActionResult< List<Produto>> produtos(){
             return _viagemContext.produtos.ToList();
         }
 

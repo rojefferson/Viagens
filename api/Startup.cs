@@ -26,6 +26,14 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
+           services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
+                });
+            });
 
             services.AddDbContext<ViagensContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
@@ -46,6 +54,8 @@ namespace api
 
             app.UseAuthorization();
 
+            app.UseCors("EnableCORS");
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
