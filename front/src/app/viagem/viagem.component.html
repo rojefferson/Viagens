@@ -1,8 +1,10 @@
 <p>viagem works!</p>
 
 
-<li *ngFor="let prod of produtos">
-    {{ prod.lugarPartida }}
-  </li>
 
 
+  <div *ngFor="let prod of produtos" >
+  
+      <img [src] = "prod.urlImg"  style="width:500px;height:600px;">
+
+  </div> 
